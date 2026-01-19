@@ -1,13 +1,13 @@
 import { useMutation, type UseMutationOptions } from '@tanstack/react-query'
-import type { RegisterFormValues } from '@/components/auth/register-form'
 import { register } from '@/api/requests'
+import type { AuthResponse, RegisterRequest } from '../types'
 
 export function useRegisterMutation(
-	options?: Omit<UseMutationOptions<void, unknown, RegisterFormValues>, 'mutationKey' | 'mutationFn'>
+	options?: Omit<UseMutationOptions<AuthResponse, unknown, RegisterRequest>, 'mutationKey' | 'mutationFn'>
 ) {
 	return useMutation({
 		mutationKey: ['register'],
-		mutationFn: (data: RegisterFormValues) => register(data),
+		mutationFn: (data: RegisterRequest) => register(data),
 		...options
 	})
 }
