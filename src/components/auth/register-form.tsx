@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { useRegisterMutation } from '@/api/hooks'
 
 const registerSchema = z.object({
 	name: z.string().min(1, { message: 'Имя обязательно' }),
@@ -19,6 +20,8 @@ const registerSchema = z.object({
 export type RegisterFormValues = z.infer<typeof registerSchema>
 
 export function RegisterForm() {
+	const { mutate, isPending } = useRegisterMutation()
+
 	const form = useForm<RegisterFormValues>({
 		resolver: zodResolver(registerSchema),
 		defaultValues: {
@@ -29,7 +32,7 @@ export function RegisterForm() {
 	})
 
 	const onSubmit = (values: RegisterFormValues) => {
-		console.log(values)
+		mutate(values)
 	}
 
 	return (
@@ -52,7 +55,11 @@ export function RegisterForm() {
 							<FormItem>
 								<FormLabel>Имя</FormLabel>
 								<FormControl>
-									<Input placeholder={`Джон Майрс`} {...field} />
+									<Input
+										placeholder={`Джон Майрс`}
+										disabled={isPending}
+										{...field}
+									/>
 								</FormControl>
 								<FormMessage />
 							</FormItem>
@@ -65,7 +72,12 @@ export function RegisterForm() {
 							<FormItem>
 								<FormLabel>Почта</FormLabel>
 								<FormControl>
-									<Input type={'email'} placeholder={`payment@payment.com`} {...field} />
+									<Input
+										type={'email'}
+										placeholder={`payment@payment.com`}
+										disabled={isPending}
+										{...field}
+									/>
 								</FormControl>
 								<FormMessage />
 							</FormItem>
@@ -78,13 +90,23 @@ export function RegisterForm() {
 							<FormItem>
 								<FormLabel>Пароль</FormLabel>
 								<FormControl>
-									<Input type={'password'} placeholder={`******`} {...field} />
+									<Input
+										type={'password'}
+										placeholder={`******`}
+										disabled={isPending}
+										{...field}
+									/>
 								</FormControl>
 								<FormMessage />
 							</FormItem>
 						)}
 					/>
-					<Button type={'submit'} size={`lg`} className={'w-full'}>
+					<Button
+						type={'submit'}
+						size={`lg`}
+						className={'w-full'}
+						disabled={isPending}
+					>
 						Продолжить
 					</Button>
 				</form>
