@@ -8,6 +8,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { useLoginMutation } from '@/api/hooks/useLoginMutation'
+import { useRouter } from 'next/navigation'
 
 const loginSchema = z.object({
 	email: z.email({ message: 'Введите корректный адрес электронной почты' }),
@@ -19,7 +20,13 @@ const loginSchema = z.object({
 export type LoginFormValues = z.infer<typeof loginSchema>
 
 export function LoginForm() {
-	const { mutate, isPending } = useLoginMutation()
+	const router = useRouter()
+
+	const { mutate, isPending } = useLoginMutation({
+		onSuccess() {
+			router.push('/dashboard')
+		}
+	})
 
 	const form = useForm<LoginFormValues>({
 		resolver: zodResolver(loginSchema),
