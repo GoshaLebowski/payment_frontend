@@ -8,6 +8,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { useRegisterMutation } from '@/api/hooks'
+import { useRouter } from 'next/navigation'
 
 const registerSchema = z.object({
 	name: z.string().min(1, { message: 'Имя обязательно' }),
@@ -20,7 +21,13 @@ const registerSchema = z.object({
 export type RegisterFormValues = z.infer<typeof registerSchema>
 
 export function RegisterForm() {
-	const { mutate, isPending } = useRegisterMutation()
+	const router = useRouter()
+
+	const { mutate, isPending } = useRegisterMutation({
+		onSuccess() {
+			router.push('/dashboard')
+		}
+	})
 
 	const form = useForm<RegisterFormValues>({
 		resolver: zodResolver(registerSchema),
