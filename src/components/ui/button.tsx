@@ -14,7 +14,9 @@ const buttonVariants = cva(
 				outline: 'border-2 border-gray-300 hover:bg-gray-50',
 				secondary:
 					'bg-secondary text-secondary-foreground hover:bg-secondary/80',
-				ghost: 'text-gray-700 hover:text-gray-900 hover:bg-white/20'
+				ghost: 'text-gray-700 hover:text-gray-900 hover:bg-white/20',
+				gradient:
+					'text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-600/90 hover:to-purple-600/90'
 			},
 			size: {
 				default: 'h-10 px-4 py-2 has-[>svg]:px-3',
