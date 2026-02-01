@@ -26,14 +26,16 @@ export function TrustedBySection() {
 							href={company.website}
 							target={`_blank`}
 						>
-							<div
-								className={`flex h-[100px] w-[150px] items-center justify-center`}
-							>
+							<div className={`flex items-center justify-center`}>
 								<Image
 									src={`/companies/${company.logo}`}
 									alt={company.name}
 									width={150}
 									height={150}
+									style={{
+										width: '150px',
+										height: 'auto'
+									}}
 									className={`object-contain`}
 								/>
 							</div>

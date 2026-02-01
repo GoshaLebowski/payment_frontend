@@ -31,7 +31,7 @@ export function AuthWrapper({
 					className={`relative z-10 flex h-full w-full flex-col items-center justify-center p-12`}
 				>
 					<Image
-						src={`/images/logo.svg`}
+						src={`/logo.svg`}
 						alt={`TestPayment`}
 						width={100}
 						height={100}
