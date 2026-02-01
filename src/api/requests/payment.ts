@@ -1,5 +1,17 @@
 import { instance } from '@/api/instance'
-import type { InitPaymentRequest } from '@/api/types'
+
+import type {
+	InitPaymentRequest,
+	InitPaymentResponse,
+	PaymentDetailsResponse
+} from '../types'
+
+export const getPaymentById = async (id: string) =>
+	await instance
+		.get<PaymentDetailsResponse>(`/payment/${id}`)
+		.then(res => res.data)
 
 export const initPayment = async (data: InitPaymentRequest) =>
-	await instance.post(`/payment/init`, data).then(res => res.data)
+	await instance
+		.post<InitPaymentResponse>(`/payment/init`, data)
+		.then(res => res.data)
