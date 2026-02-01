@@ -12,9 +12,13 @@ export function SiteFooter() {
 						<div className={`mb-2 flex items-center gap-x-2`}>
 							<Image
 								src={`/logo.svg`}
-								alt={`PAYMENT`}
+								alt={`Logo`}
 								width={30}
 								height={30}
+								style={{
+									width: `30px`,
+									height: `auto`
+								}}
 							/>
 							<span
 								className={`text-xl font-semibold text-white`}

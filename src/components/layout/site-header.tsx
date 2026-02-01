@@ -19,8 +19,12 @@ export function SiteHeader() {
 					<Image
 						src={`/logo.svg`}
 						alt={`Logo`}
-						width={`30`}
-						height={`30`}
+						width={30}
+						height={30}
+						style={{
+							width: `30px`,
+							height: `auto`
+						}}
 					/>
 					<span className={`text-xl font-semibold text-gray-800`}>
 						PAYMENT
