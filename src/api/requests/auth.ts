@@ -1,6 +1,7 @@
+import { saveToken } from '@/api/cookies'
+
 import { api } from '../instance'
 import type { AuthResponse, LoginRequest, RegisterRequest } from '../types'
-import { saveToken } from '@/api/cookies'
 
 export const register = async (data: RegisterRequest) =>
 	await api.post<AuthResponse>('/auth/register', data).then(res => {
